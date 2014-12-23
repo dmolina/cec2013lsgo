@@ -1,0 +1,59 @@
+#!python
+#cython: language_level=2, boundscheck=False
+import cython
+from libc.stdlib cimport malloc, free
+
+cdef extern from "eval_func.h":
+    void set_func(int funid)
+    double eval_sol(double*)
+    void free_func()
+
+def _cec2013_test_func(double[::1]x):
+    cdef int dim
+    cdef double fitness
+    cdef double *sol
+
+    dim = x.shape[0]
+
+    sol = <double *> malloc(dim*cython.sizeof(double))
+
+    if sol is NULL:
+        raise MemoryError()
+
+    for i in xrange(dim):
+        sol[i] = x[i]
+
+    fitness = eval_sol(sol)
+    free(sol)
+    return fitness
+
+cdef class Benchmark:
+    cpdef get_info(self, int fun, int dim):
+        """ 
+        Return the lower bound of the function
+        """
+        cdef double optimum
+        cdef double range_fun
+
+        optimum = 0
+
+        if (fun == 6):
+            range_fun = 32
+        elif (fun == 9):
+            range_fun = 5
+        elif (fun == 10):
+            range_fun = 32
+        else:
+            range_fun = 100
+
+        return {'lower': -range_fun, 'upper': range_fun, 'threshold': 0, 'best': optimum}
+
+    def __dealloc(self):
+        free_func()
+
+    cpdef get_function(self, int fun):
+        """
+        Evaluate the solution
+        """
+        set_func(fun)
+        return _cec2013_test_func
