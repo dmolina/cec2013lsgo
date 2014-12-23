@@ -2,17 +2,32 @@ CC=g++
 # CXXFLAGS=-Wall -pedantic -std=c++11 -O3
 CXXFLAGS=-Wall -pedantic -std=c++0x  -ggdb -DDEBUG
 
-OBJECTS=demo.o  Benchmarks.o \
+OBJECTS=Benchmarks.o \
 F1.o F2.o F3.o F4.o F5.o F6.o F7.o F8.o F9.o F10.o\
 F11.o F12.o F13.o F14.o F15.o 
 
-demo: 	$(OBJECTS)
-	$(CC) $(CXXFLAGS) -o demo $(OBJECTS)
+OBJECTS2=$(OBJECTS) eval_func.o
+
+default: demo demo2
+
+demo: 	$(OBJECTS) demo.o
+	$(CC) $(CXXFLAGS) -o demo $(OBJECTS) demo.o
+
+demo2:  $(OBJECTS2) demo2.o
+	$(CC) $(CXXFLAGS) -o demo2 $(OBJECTS2) demo2.o
 
 demo.o: demo.cpp Header.h  Benchmarks.h \
 F1.h F2.h F3.h F4.h F5.h F6.h F7.h F8.h F9.h F10.h\
 F11.h F12.h F13.h F14.h F15.h 
 	$(CC) $(CXXFLAGS) -c demo.cpp 
+
+eval_func.o:  eval_func.h Benchmarks.h \
+F1.h F2.h F3.h F4.h F5.h F6.h F7.h F8.h F9.h F10.h\
+F11.h F12.h F13.h F14.h F15.h 
+	$(CC) $(CXXFLAGS) -c eval_func.cpp
+
+demo2.o: demo2.cpp
+	$(CC) $(CXXFLAGS) -c demo2.cpp
 
 Benchmarks.o:  Benchmarks.h Benchmarks.cpp
 	$(CC) $(CXXFLAGS) -c Benchmarks.cpp
@@ -64,4 +79,4 @@ F15.o: F15.h Benchmarks.h F15.cpp
 
 .PHONY : clean
 clean:
-	rm -f demo $(OBJECTS)
+	rm -f demo $(OBJECTS2) demo2.o demo.o
