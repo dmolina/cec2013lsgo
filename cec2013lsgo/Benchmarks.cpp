@@ -1,6 +1,7 @@
 #include "Benchmarks.h"
 
 Benchmarks::Benchmarks(){
+  data_dir = "cdatafiles";
   dimension = 1000;		
   nonSeparableGroupSize = 50;
   MASK = ((L(1)) << (L(48))) - (L(1));
@@ -134,7 +135,7 @@ double* Benchmarks::readOvector()
   // read O vector from file in csv format
   double* d = new double[dimension];
   stringstream ss;
-  ss<< "cdatafiles/" << "F" << ID << "-xopt.txt";
+  ss<< data_dir <<"/" << "F" << ID << "-xopt.txt";
   ifstream file (ss.str());
   string value;
   string line;
@@ -161,7 +162,7 @@ double* Benchmarks::readOvector()
     }
   else
     {
-      cout<<"Cannot open datafiles"<<endl;
+      cout<<"Cannot open the datafiles '" <<ss.str() <<"'" <<endl;
     }
   return d;
 }
@@ -171,7 +172,7 @@ double** Benchmarks::readOvectorVec()
   // read O vector from file in csv format, seperated by s_size groups
   double** d = (double**) malloc(s_size*sizeof(double*));
   stringstream ss;
-  ss<< "cdatafiles/" << "F" << ID << "-xopt.txt";
+  ss<< data_dir <<"/" << "F" << ID << "-xopt.txt";
   ifstream file (ss.str());
   string value;
   string line;
@@ -206,7 +207,7 @@ double** Benchmarks::readOvectorVec()
     }
   else
     {
-      cout<<"Cannot open datafiles"<<endl;
+      cout<<"Cannot open the OvectorVec datafiles '" <<ss.str() <<"'" <<endl;
     }
   return d;  
 }
@@ -272,7 +273,7 @@ int* Benchmarks::readPermVector(){
   d = new int[dimension];
 
   stringstream ss;
-  ss<< "cdatafiles/" << "F" << ID << "-p.txt";
+  ss<< data_dir <<"/" << "F" << ID << "-p.txt";
   ifstream file (ss.str());
   int c=0;
   string value;
@@ -415,7 +416,7 @@ double** Benchmarks::readR(int sub_dim)
     }
 
   stringstream ss;
-  ss<< "cdatafiles/" << "F" << ID << "-R"<<sub_dim<<".txt";
+  ss<< data_dir <<"/" << "F" << ID << "-R"<<sub_dim<<".txt";
   // cout<<ss.str()<<endl;
 
   ifstream file (ss.str());
@@ -455,7 +456,7 @@ int* Benchmarks::readS(int num)
   s = new int[num];
 
   stringstream ss;
-  ss<< "cdatafiles/" << "F" << ID << "-s.txt";
+  ss<< data_dir <<"/" << "F" << ID << "-s.txt";
   ifstream file (ss.str());
   int c=0;
   string value;
@@ -475,7 +476,7 @@ double* Benchmarks::readW(int num)
   w = new double[num];
 
   stringstream ss;
-  ss<< "cdatafiles/" << "F" << ID << "-w.txt";
+  ss<< data_dir <<"/" << "F" << ID << "-w.txt";
   ifstream file (ss.str());
   int c=0;
   string value;
@@ -1099,6 +1100,10 @@ double Benchmarks::c2(double x)
     {
       return 3.1;
     }
+}
+
+void Benchmarks::set_data_dir(string new_data_dir) {
+    data_dir = new_data_dir;
 }
 
 

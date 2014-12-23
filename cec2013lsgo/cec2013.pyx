@@ -2,10 +2,13 @@
 #cython: language_level=2, boundscheck=False
 import cython
 from libc.stdlib cimport malloc, free
+from pkg_resources import resource_filename
+from os import path
 
 cdef extern from "eval_func.h":
     void set_func(int funid)
     double eval_sol(double*)
+    void set_data_dir(char *new_data_dir)
     void free_func()
 
 def _cec2013_test_func(double[::1]x):
@@ -56,4 +59,6 @@ cdef class Benchmark:
         Evaluate the solution
         """
         set_func(fun)
+        dir_name = resource_filename("cec2013lsgo", "cdatafiles")
+        set_data_dir(dir_name)
         return _cec2013_test_func

@@ -54,11 +54,7 @@ setup(
         packages=['cec2013lsgo'],
         install_requires=['cython', 'numpy'],
         ext_modules=cythonize(cec2013lsgo),
+	package_data={'cec2013lsgo': ['cdatafiles/*.txt']},
 	tests_require=['pytest'],
-#	ext_modules=cythonize('benchmarks.pyx', annotated=True),
-cmdclass={'build_ext': build_ext, 'test': PyTest},
-	# Packaging options.
-	#include_package_data = True,
-	# Tests
-	#tests_require=['pytest'],
+	cmdclass={'build_ext': build_ext, 'test': PyTest},
 )

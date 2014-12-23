@@ -105,9 +105,12 @@ class Benchmarks{
   int* s;
   double* w;
   
+// Added input file
+  string data_dir;
 
  public:
   Benchmarks();
+  void set_data_dir(string new_data_dir);
   virtual ~Benchmarks();
   virtual double compute(double* x){return 0;};
   virtual double compute(vector<double> x){return 0;};
