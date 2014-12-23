@@ -15,7 +15,6 @@ double eval_sol(double *x) {
 
 void set_data_dir(char *new_data_dir) {
     string data_dir = new_data_dir;
-    printf("new data: %s\n", data_dir.c_str());
     bench->set_data_dir(data_dir);
 }
 
