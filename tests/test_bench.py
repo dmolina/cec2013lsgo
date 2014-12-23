@@ -17,7 +17,7 @@ def test_info(bench):
         assert info['best'] == 0
 
 def test_values(bench):
-    dim = 5
+    dim = 1000
     sol = np.zeros(dim)
     f1 = bench.get_function(1)
     assert not np.isnan(f1(sol))
