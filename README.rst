@@ -64,10 +64,11 @@ The package is very simple to use. There is a class Benchmark with two functions
 
 These two functionalities are done with two methods in Benchmark class:
 
-- *get_info(function_id)*
-    Return an array with the following information. 
+- **get_num_functions()**
+  Return number of functions in the benchmarks (15)
 
-    -- :function_id: is the identifier of the function, a int value between 1 and 15.
+- **get_info(function_id)**
+  Return an array with the following information, where /function_id/ is the identifier of the function, a int value between 1 and 15.
 
     - lower, upper
         *lower* and *upper* boundaries of the domain search. 
@@ -84,7 +85,7 @@ These two functionalities are done with two methods in Benchmark class:
     It can be noticed that several variables always return the same. It is made that to maintain the 
     same interface to other cec20xx competitions.
 
-- get_function(function_id)
+- **get_function(function_id)**
 
   *function_id* is the same parameter than in **get_info**, an integer value between 1 and 15.
   
@@ -93,8 +94,8 @@ These two functionalities are done with two methods in Benchmark class:
 Examples of use
 ---------------
 
-Obtain information about function 1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Obtain information about one function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 >>> from cec2013lsgo.cec2013 import Benchmark
 >>> bench = Benchmark()
@@ -119,10 +120,8 @@ Evaluate a solution
 >>> fun_fitness(sol)
 464006824710.75995
 
-Evaluate a solution
 Contact
 -------
-
 Python package 
   Daniel Molina @ Computer Science Deparment, University of Cadiz
   Please feel free to contact me at <daniel.molina@uca.es> for any enquiries or suggestions.
