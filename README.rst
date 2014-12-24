@@ -65,9 +65,11 @@ The package is very simple to use. There is a class Benchmark with two functions
 These two functionalities are done with two methods in Benchmark class:
 
 - **get_num_functions()**
-  Return number of functions in the benchmarks (15)
+
+  Return the number of functions in the benchmarks (15)
 
 - **get_info(function_id)**
+
   Return an array with the following information, where /function_id/ is the identifier of the function, a int value between 1 and 15.
 
     - lower, upper
@@ -82,7 +84,7 @@ These two functionalities are done with two methods in Benchmark class:
     - dimension
         Dimension for the function, it is always 1000.
 
-    It can be noticed that several variables always return the same. It is made that to maintain the 
+    It can be noticed that several data are the same for all functions. It is made for maintaining the 
     same interface to other cec20xx competitions.
 
 - **get_function(function_id)**
