@@ -45,14 +45,81 @@ There are two equivalents demo executables: demo and demo2.
 **REMEMBER: To run the C++ version the directory cdatafiles must be available in the working directory**. 
 In the python version, these files are included in the packages, so it is not needed. 
 
-To run
-------
-./demo.out
+Tests
+-----
 
-To clean up
------------
-make clean
+The source code has tests to check the information about each function, and the results obtained
+with the C version using the solution np.zeros(1000) (a solution of zeros).
 
+Quickstart
+----------
+
+The package is very simple to use. There is a class Benchmark with two functions:
+
+- Give information for each function: their optimum, their dimensionality, the domain search, and the
+  expected threshold to achieve the optima.
+
+- Give a fitness function to evaluate solutions. It expect that these solutions are numpy arrays
+  (vectors) but it can also work with normal arrays.
+
+These two functionalities are done with two methods in Benchmark class:
+
+- *get_info(function_id)*
+    Return an array with the following information. 
+
+    -- :function_id: is the identifier of the function, a int value between 1 and 15.
+
+    - lower, upper
+        *lower* and *upper* boundaries of the domain search. 
+
+    - best
+        Optimum to achieve, it is always zero, thus it can be ignored.
+
+    - threshold
+        Threshold to obtain, it is always zero, thus it can also be ignored.
+
+    - dimension
+        Dimension for the function, it is always 1000.
+
+    It can be noticed that several variables always return the same. It is made that to maintain the 
+    same interface to other cec20xx competitions.
+
+- get_function(function_id)
+
+  *function_id* is the same parameter than in **get_info**, an integer value between 1 and 15.
+  
+  It returns the fitness function to evaluate the solutions.
+
+Examples of use
+---------------
+
+Obtain information about function 1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+>>> from cec2013lsgo.cec2013 import Benchmark
+>>> bench = Benchmark()
+>>> bench.get_info(1)
+{'best': 0.0,
+ 'dimension': 1000,
+ 'lower': -100.0,
+ 'threshold': 0,
+ 'upper': 100.0}
+
+Create random solution for the search
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+>>> from numpy.random import rand
+>>> info = bench.get_info(1)
+>>> dim = info['dimension']
+>>> sol = info['lower']+rand(dim)*(info['upper']-info['lower'])
+
+Evaluate a solution
+~~~~~~~~~~~~~~~~~~~
+>>> fun_fitness = bench.get_function(1)
+>>> fun_fitness(sol)
+464006824710.75995
+
+Evaluate a solution
 Contact
 -------
 
