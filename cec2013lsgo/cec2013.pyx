@@ -1,9 +1,10 @@
 #!python
 #cython: language_level=2, boundscheck=False
-import cython
-from libc.stdlib cimport malloc, free
-from pkg_resources import resource_filename
 from os import path
+from collections import namedtuple
+from pkg_resources import resource_filename
+from libc.stdlib cimport malloc, free
+import cython
 
 cdef extern from "eval_func.h":
     void set_func(int funid)
@@ -31,7 +32,7 @@ def _cec2013_test_func(double[::1]x):
     return fitness
 
 cdef class Benchmark:
-    cpdef get_info(self, int fun, int dim):
+    cpdef get_info(self, int fun):
         """ 
         Return the lower bound of the function
         """
@@ -49,7 +50,10 @@ cdef class Benchmark:
         else:
             range_fun = 100
 
-        return {'lower': -range_fun, 'upper': range_fun, 'threshold': 0, 'best': optimum}
+        return {'lower': -range_fun, 'upper': range_fun, 'threshold': 0, 'best': optimum, 'dimension': 1000}
+
+    def get_num_functions(self):
+        return 15
 
     def __dealloc(self):
         free_func()
