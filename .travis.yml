@@ -13,4 +13,4 @@ install:
 - sudo $PYTHON setup.py develop
 - sudo pip install pytest
 script:
-    - py.test
+    - $PYTHON setup.py test
