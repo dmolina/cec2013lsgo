@@ -10,8 +10,9 @@ install:
 - sudo apt-get install $PYTHON-numpy
 - sudo easy_install$PYSUF pip
 - sudo pip install cython
-- sudo $PYTHON setup.py develop
 - sudo pip install pytest
 - sudo $PYTHON setup.py install
+- sudo $PYTHON setup.py sdist
+- sudo pip install sdist/*.tar.gz
 script:
-    - sudo $PYTHON setup.py test
+    - py.test
