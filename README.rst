@@ -21,7 +21,7 @@ Testing Environment
 - Debian GNU/Linux jessie/sid
 - GNU Make 3.81
 - g++ (Debian 4.7.3-4) 4.7.3
-- Python 2.7
+- Python 2.7 and Python 3.2
 - numpy 1.8.1
 - cython 0.20.1
 
