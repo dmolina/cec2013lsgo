@@ -13,6 +13,15 @@ cdef extern from "eval_func.h":
     void free_func()
 
 
+import sys
+if sys.version < '3':
+    def b(x):
+        return x
+else:
+    import codecs
+    def b(x):
+        return codecs.latin_1_encode(x)[0]
+
 def _cec2013_test_func(double[::1] x):
     cdef int dim
     cdef double fitness
@@ -31,15 +40,6 @@ def _cec2013_test_func(double[::1] x):
     fitness = eval_sol(sol)
     free(sol)
     return fitness
-
-import sys
-if sys.version < '3':
-    def b(x):
-        return x
-else:
-    import codecs
-    def b(x):
-        return codecs.latin_1_encode(x)[0]
 
 cdef class Benchmark:
     cpdef get_info(self, int fun):
@@ -74,6 +74,6 @@ cdef class Benchmark:
         Evaluate the solution
         """
         set_func(fun)
-        dir_name = resource_filename("cec2013lsgo", "cdatafiles")
-        set_data_dir(b(dir_name))
+        cdef bytes dir_name = resource_filename("cec2013lsgo", "cdatafiles")
+        set_data_dir(dir_name)
         return _cec2013_test_func
