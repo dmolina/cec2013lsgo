@@ -2,6 +2,10 @@ language: python
 python:
     - "2.7"
     - "3.4"
-before_install: pip install numpy cython cec2013lsgo
+before_install: 
+    - sudo apt-get install cython
+    - pip install python-numpy cec2013lsgo
+    - pip install .
+
 script:
     - py.test
