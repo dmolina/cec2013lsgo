@@ -4,4 +4,4 @@ python:
     - "3.4"
 before_install: pip install pytest
 script:
-    - py.test
+    - python setup.py test
