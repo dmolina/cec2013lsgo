@@ -32,6 +32,15 @@ def _cec2013_test_func(double[::1] x):
     free(sol)
     return fitness
 
+import sys
+if sys.version < '3':
+    def b(x):
+        return x
+else:
+    import codecs
+    def b(x):
+        return codecs.latin_1_encode(x)[0]
+
 cdef class Benchmark:
     cpdef get_info(self, int fun):
         """
@@ -66,5 +75,5 @@ cdef class Benchmark:
         """
         set_func(fun)
         dir_name = resource_filename("cec2013lsgo", "cdatafiles")
-        set_data_dir(dir_name)
+        set_data_dir(b(dir_name))
         return _cec2013_test_func
