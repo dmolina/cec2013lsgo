@@ -4,7 +4,7 @@ python:
     - "3.4"
 before_install: 
     - sudo apt-get install cython
-    - pip install python-numpy cec2013lsgo
+    - sudo apt-get install python-numpy
     - pip install .
 
 script:
