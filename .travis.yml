@@ -11,5 +11,6 @@ install:
 - sudo easy_install$PYSUF pip
 - sudo pip install cython
 - sudo $PYTHON setup.py develop
+- sudo pip install pytest
 script:
     - py.test
