@@ -25,6 +25,10 @@ Testing Environment
 - numpy 1.8.1
 - cython 0.20.1
 
+Results with Travis-CI
+~~~~~~~~~~~~~~~~~~~~~~
+.. image:: https://api.travis-ci.org/dmolina/cec2013lsgo.svg?branch=master
+
 Instalation
 -----------
 
