@@ -9,17 +9,18 @@ import cython
 cdef extern from "eval_func.h":
     void set_func(int funid)
     double eval_sol(double*)
-    void set_data_dir(char *new_data_dir)
+    void set_data_dir(char * new_data_dir)
     void free_func()
 
-def _cec2013_test_func(double[::1]x):
+
+def _cec2013_test_func(double[::1] x):
     cdef int dim
     cdef double fitness
-    cdef double *sol
+    cdef double * sol
 
     dim = x.shape[0]
 
-    sol = <double *> malloc(dim*cython.sizeof(double))
+    sol = <double *> malloc(dim * cython.sizeof(double))
 
     if sol is NULL:
         raise MemoryError()
@@ -33,7 +34,7 @@ def _cec2013_test_func(double[::1]x):
 
 cdef class Benchmark:
     cpdef get_info(self, int fun):
-        """ 
+        """
         Return the lower bound of the function
         """
         cdef double optimum
@@ -50,7 +51,8 @@ cdef class Benchmark:
         else:
             range_fun = 100
 
-        return {'lower': -range_fun, 'upper': range_fun, 'threshold': 0, 'best': optimum, 'dimension': 1000}
+        return {'lower': -range_fun, 'upper': range_fun, 'threshold': 0,
+                'best': optimum, 'dimension': 1000}
 
     def get_num_functions(self):
         return 15
