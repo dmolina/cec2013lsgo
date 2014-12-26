@@ -74,6 +74,6 @@ cdef class Benchmark:
         Evaluate the solution
         """
         set_func(fun)
-        cdef bytes dir_name = resource_filename("cec2013lsgo", "cdatafiles")
+        cdef bytes dir_name = bytes(resource_filename("cec2013lsgo", "cdatafiles"))
         set_data_dir(dir_name)
         return _cec2013_test_func
