@@ -13,6 +13,6 @@ install:
 - sudo pip install pytest
 - sudo $PYTHON setup.py install
 - sudo $PYTHON setup.py sdist
-- sudo pip install sdist/*.tar.gz
+- sudo pip install dist/*.tar.gz
 script:
     - py.test
