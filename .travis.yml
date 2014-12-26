@@ -9,7 +9,7 @@ install:
 - sudo apt-get install $PYTHON-setuptools
 - sudo apt-get install $PYTHON-numpy
 - sudo easy_install$PYSUF pip
-- sudo pip-$PYVER install cython
+- sudo pip install cython
 - sudo $PYTHON setup.py develop
 script:
     - py.test
