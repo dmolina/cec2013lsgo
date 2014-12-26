@@ -1,4 +1,5 @@
-from setuptools import setup, find_packages, Extension
+from setuptools import Extension
+from distutils.core import setup
 from setuptools.command.test import test as TestCommand
 from Cython.Distutils import build_ext
 from Cython.Build import cythonize
