@@ -7,8 +7,8 @@ import sys
 
 # cython = Extension('ea.cbenchmarks',
 #    sources = ['ea/cbenchmarks.pyx'],
-##    include_dirs = ['include/']
-#)
+#    include_dirs = ['include/']
+# )
 sourcefiles = ['cec2013lsgo/cec2013.pyx']
 
 sourcefiles += ['cec2013lsgo/eval_func.cpp', 'cec2013lsgo/Benchmarks.cpp']
@@ -47,7 +47,7 @@ setup(
     name='cec2013lsgo',
     version='2.0',
     author='Daniel Molina',
-    author_email='daniel.molina@uca.es',
+    author_email='dmolina@decsai.ugr.es',
     maintainer='Daniel Molina',
     description='Package for benchmark for the Real \
     Large Scale Global Optimization session on IEEE \
