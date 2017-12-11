@@ -91,6 +91,7 @@ double F4::compute(double*x){
 //  printf("Rotated Part = %1.16E\n", rot_elliptic(anotherz1,nonSeparableGroupSize) * 1e6);
 //  printf("Separable Part = %1.16E\n", elliptic(anotherz2,dimension - nonSeparableGroupSize));
 
+  update(result);
   return(result);
 }
 

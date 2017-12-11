@@ -23,6 +23,30 @@ struct IndexMap{
 };
 
 class Benchmarks{
+ private:
+  void save_best();
+ protected:
+  // maxevals
+  unsigned maxevals;
+  // current number of evaluations
+  unsigned numevals;
+  // Current milestones to store
+  unsigned *milestones;
+  // Index of next milestone to check
+  unsigned mil_pos;
+  // Current found best fitness
+  double best_fitness;
+  // Filename
+  string output;
+  // Update the state with the new fitness
+  void update(double newfitness);
+  // Save in the file the current best
+  void save_error(void);
+public:
+  // Set the filename
+  void set_file_output(const char *name);
+  // Next iteration
+  void nextRun();
  protected:
   int next(int bits);
   int nextInt(int n);

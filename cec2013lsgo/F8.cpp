@@ -63,6 +63,7 @@ double F8::compute(double* x){
       delete []anotherz1;
       // cout<<result<<endl;
     }
-  
+ 
+  update(result);
   return(result);
 }

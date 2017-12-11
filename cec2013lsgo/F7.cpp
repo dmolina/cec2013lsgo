@@ -76,6 +76,7 @@ double F7::compute(double*x){
   result += sphere(z, dimension-c);
   delete []z;
 
+  update(result);
   return(result);
 }
 

@@ -9,6 +9,10 @@ void set_func(int funcID) {
     bench = generateFuncObj(funcID);
 }
 
+void next_run() {
+    bench->nextRun();
+}
+
 double eval_sol(double *x) {
     return bench->compute(x);
 }

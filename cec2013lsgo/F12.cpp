@@ -29,6 +29,7 @@ double F12::compute(double*x){
     }
 
   result=rosenbrock(anotherz, dimension);
+  update(result);
   return(result);
 }
 

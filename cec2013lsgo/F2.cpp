@@ -36,5 +36,6 @@ double F2::compute(double* x){
   // Lambda(anotherz, 10);
 
   result = rastrigin(anotherz,dimension);
+  update(result);
   return(result);
 }
