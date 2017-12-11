@@ -41,6 +41,7 @@ double F3::compute(double*x){
   
   result = ackley(anotherz,dimension);
 
+  update(result);
   return(result);
 }
 

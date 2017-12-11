@@ -76,7 +76,8 @@ double F6::compute(double*x){
     }
   result += ackley(z, dimension-c);
   delete []z;
-  
+
+  update(result);
   return(result);
 }
 

@@ -30,6 +30,6 @@ double F15::compute(double*x){
 
   result=schwefel(anotherz, dimension);
 
+  update(result);
   return(result);
 }
-

@@ -45,7 +45,7 @@ class PyTest(TestCommand):
 
 setup(
     name='cec2013lsgo',
-    version='0.1',
+    version='2.0',
     author='Daniel Molina',
     author_email='daniel.molina@uca.es',
     maintainer='Daniel Molina',

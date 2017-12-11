@@ -93,7 +93,7 @@ double F5::compute(double*x){
   
   delete[] z;
 
-
+  update(result);
   return(result);
 }
 

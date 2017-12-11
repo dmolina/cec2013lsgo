@@ -11,6 +11,7 @@ cdef extern from "eval_func.h":
     double eval_sol(double*)
     void set_data_dir(char * new_data_dir)
     void free_func()
+    void next_run()
 
 
 import sys
@@ -68,6 +69,9 @@ cdef class Benchmark:
 
     def __dealloc(self):
         free_func()
+
+    cpdef next_run(self):
+        next_run()
 
     cpdef get_function(self, int fun):
         """

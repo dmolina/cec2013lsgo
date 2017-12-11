@@ -66,7 +66,7 @@ double F9::compute(double*x){
       // cout<<result<<endl;
     }
 
-
+  update(result);
   return(result);
 }
 

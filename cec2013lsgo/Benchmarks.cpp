@@ -2,7 +2,7 @@
 
 Benchmarks::Benchmarks(){
   data_dir = "cdatafiles";
-  dimension = 1000;		
+  dimension = 1000;
   nonSeparableGroupSize = 50;
   MASK = ((L(1)) << (L(48))) - (L(1));
   m_havenextGaussian = false;
@@ -27,10 +27,35 @@ Benchmarks::Benchmarks(){
 
   // minX = -100;
   // maxX = 100;
+  maxevals = 3000000;
+  numevals = 2*maxevals;
+  best_fitness = -1;
+  unsigned int increm = maxevals/10;
+  unsigned int next=0;
+  output = "";
+  // Store the milestones (10% and previous milestones: 1.25e5, 6e5, 3e6)
+  milestones = new unsigned int[10+3];
+  mil_pos = 0;
+  unsigned int others[] = {120000, 600000, 3000000};
+  int m_i, o_i;
+
+  for (m_i = 0, o_i = 0, next = increm; next <= maxevals; next+= increm) {
+      // Avoid not considering the previous milestones
+      if (next > others[o_i]) {
+         milestones[m_i] = others[o_i];
+         m_i += 1;
+         o_i += 1;
+      }
+      else if (next == others[o_i]) {
+         o_i += 1;
+      }
+      milestones[m_i] = next;
+      m_i += 1;
+  }
 }
 
 void Benchmarks::setMinX(int inVal){
-  minX = inVal;	
+  minX = inVal;
 }
 void Benchmarks::setMaxX(int inVal){
   maxX = inVal;
@@ -49,6 +74,7 @@ void Benchmarks::setNonSeparableGroupSize(int inVal){
 }
 
 Benchmarks::~Benchmarks(){
+  delete[] milestones;
   // delete[] anotherz;
   // delete[] anotherz1;
   // delete[] anotherz2;
@@ -136,7 +162,7 @@ double* Benchmarks::readOvector()
   double* d = new double[dimension];
   stringstream ss;
   ss<< data_dir <<"/" << "F" << ID << "-xopt.txt";
-  ifstream file (ss.str());
+  ifstream file(ss.str());
   string value;
   string line;
   int c=0;
@@ -178,8 +204,8 @@ double** Benchmarks::readOvectorVec()
   string line;
   int c = 0;                      // index over 1 to dim
   int i = -1;                      // index over 1 to s_size
-  int up = 0;                   // current upper bound for one group
-  
+  int up = 0;                      // current upper bound for one group
+
   if (file.is_open())
     {
       stringstream iss;
@@ -277,6 +303,9 @@ int* Benchmarks::readPermVector(){
   ifstream file (ss.str());
   int c=0;
   string value;
+
+
+
 
   if (file.is_open())
     {
@@ -1106,4 +1135,45 @@ void Benchmarks::set_data_dir(string new_data_dir) {
     data_dir = new_data_dir;
 }
 
+// Update the state with the new fitness
+void Benchmarks::update(double newfitness) {
 
+  if (numevals > maxevals) {
+
+    if (numevals >= 2*maxevals) {
+      cerr <<"Error: nextRun was not run before compute" <<endl;
+      exit(1);
+    }
+    else if (numevals > maxevals*1.1) {
+        cerr <<"Error: many evaluations greater than maximum." <<endl;
+        exit(1);
+     }
+     cout <<"Warning: evaluations greater than maximum, will be ignored." <<endl;
+     return;
+  }
+  if ((numevals == 0) || (newfitness < best_fitness))  {
+    best_fitness = newfitness;
+
+    if (output.length() == 0) {
+      output = "results_f" +std::to_string(ID) +".csv";
+    }
+  }
+  numevals += 1;
+
+  if (numevals == milestones[mil_pos]) {
+    save_error();
+    mil_pos += 1;
+  }
+}
+
+void Benchmarks::nextRun(void) {
+   numevals = 0;
+   mil_pos = 0;
+}
+
+void Benchmarks::save_error(void) {
+  ofstream f_output(output, std::ofstream::out | std::ofstream::app);
+
+  f_output <<numevals <<", " <<ID <<", " <<std::scientific <<best_fitness <<endl;
+  f_output.close();
+}
