@@ -1,10 +1,10 @@
 CC=g++
 # CXXFLAGS=-Wall -pedantic -std=c++11 -O3
-CXXFLAGS=-Wall -pedantic -std=c++0x  -ggdb -DDEBUG
+CXXFLAGS=-Wall -pedantic -std=c++11 -O3
 
 OBJECTS=Benchmarks.o \
 F1.o F2.o F3.o F4.o F5.o F6.o F7.o F8.o F9.o F10.o\
-F11.o F12.o F13.o F14.o F15.o 
+F11.o F12.o F13.o F14.o F15.o
 
 OBJECTS2=$(OBJECTS) eval_func.o
 
