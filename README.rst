@@ -128,18 +128,14 @@ Evaluate a solution
 
 Contact
 -------
-Python package 
-  Daniel Molina @ Computer Science Deparment, University of Cadiz
-  Please feel free to contact me at <daniel.molina@uca.es> for any enquiries or suggestions.
-
-C++ source code 
-  Wenxiang Chen @ Computer Science Department, Colorado State University
-  Please feel free to contact me at <chenwx@cs.colostate.edu> for any enquiries or suggestions.
+Python package and C++ version
+  Daniel Molina @ Computer Science Deparment, University of Granada
+  Please feel free to contact me at <dmolina@decsai.ugr.es> for any enquiries or suggestions.
 
 Last Updated: 
 
 - C++ version
-  <2013-05-28 Tue 06:28>
+  <2018-12-10>
 
 - Python wrapping
-  <2014-12-23>
+  <2018-01-08>
