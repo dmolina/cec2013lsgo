@@ -19,14 +19,14 @@ for i in range(1, 16):
 cec2013lsgo = Extension("cec2013lsgo.cec2013",
                         sourcefiles,
                         language="c++",
-                        extra_compile_args=["-std=c++0x"],
+                        extra_compile_args=["-std=c++11"],
                         libraries=["m"])  # Unix-like specific
 
 
 class PyTest(TestCommand):
     user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
 
-    def initialize_options(self):
+    def initialize_options(self): 
         TestCommand.initialize_options(self)
         self.pytest_args = []
 

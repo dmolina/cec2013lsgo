@@ -26,6 +26,7 @@ int main(){
 
   for (unsigned i=0; i<funNum; i++){
     fp = generateFuncObj(funToRun[i]); 
+    fp->nextRun();
     printf("F %d value = %1.20E\n", fp->getID(), fp->compute(X));
     gettimeofday(&start, NULL);
     for (unsigned j=0; j < run; j++){

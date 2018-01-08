@@ -4,9 +4,10 @@
 static Benchmarks* bench=NULL;
 
 Benchmarks* generateFuncObj(int funcID);
- 
+
 void set_func(int funcID) {
     bench = generateFuncObj(funcID);
+    bench->nextRun();
 }
 
 void next_run() {
