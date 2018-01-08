@@ -52,11 +52,9 @@ cdef class Benchmark:
 
         optimum = 0
 
-        if (fun == 6):
-            range_fun = 32
-        elif (fun == 9):
+        if (fun in [2, 5, 9]):
             range_fun = 5
-        elif (fun == 10):
+        elif (fun in [3, 6, 10]):
             range_fun = 32
         else:
             range_fun = 100
